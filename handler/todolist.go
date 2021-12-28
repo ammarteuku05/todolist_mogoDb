@@ -26,10 +26,10 @@ func (h *Handler) CreateHandler(c *gin.Context) {
 		return
 	}
 	todo, err := h.svc.Create(input)
-	res := bson.M{"_id": todo.ID, "task": input.Task, "status": false}
+	result := bson.M{"_id": todo.ID, "task": input.Task, "status": false}
 	if err != nil {
 		c.JSON(400, err)
 		return
 	}
-	json.NewEncoder(c.Writer).Encode(res)
+	json.NewEncoder(c.Writer).Encode(result)
 }
